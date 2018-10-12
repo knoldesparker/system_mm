@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-
 <head>
     <title>Spring Security Example </title>
     <meta charset="UTF-8">
+    <link href="../static/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 </head>
-<body>
+<div class="container" style="width: 35%;">
+
+
+<body class="text-center">
 <div th:if="${param.error}">
-    Invalid username and password.
+    <div class="alert alert-danger" role="alert">
+        Wrong Password or Username!
+    </div>
 </div>
 <div th:if="${param.logout}">
-    You have been logged out.
+    <div class="alert alert-success" role="alert">
+        You have been logged out.
+    </div>
 </div>
 <form th:action="@{/login}" method="post">
+    <img class="mb-4" src="/static/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+    <label for="inputUsername" class="sr-only">User name</label>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Email address" name="username" autofocus style="margin-bottom: 10px">
+
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
+    <hr>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign In">Sign in</button>
+
+    <!--
     <div><label> User Name : <input type="text" name="username"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Sign In"/></div>
+    -->
+
 </form>
+</div>
 </body>
+<script src="../static/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+
 </html>
