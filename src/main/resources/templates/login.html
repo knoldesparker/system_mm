@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>Spring Security Example </title>
     <meta charset="UTF-8">
-    <link href="../static/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
-</head>
-<div class="container" style="width: 35%;">
 
+<body class="text-center" style="background-color: #f5f5f5">
+    <div class="container" style="width: 35%; padding-top: 10%">
 
-<body class="text-center">
-<div th:if="${param.error}">
-    <div class="alert alert-danger" role="alert">
-        Wrong Password or Username!
+    <div th:if="${param.error}" style="margin-top: 16px">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            You entered a wrong username or password
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
-</div>
-<div th:if="${param.logout}">
-    <div class="alert alert-success" role="alert">
-        You have been logged out.
+    <div th:if="${param.logout}" style="margin-top: 16px">
+        <div class="alert alert-success" role="alert">
+            You have been logged out.
+        </div>
     </div>
-</div>
-<form th:action="@{/login}" method="post">
-    <img class="mb-4" src="/static/bootstrap-solid.svg" alt="" width="72" height="72">
+
+    <form th:action="@{/login}" method="post">
+
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
     <label for="inputUsername" class="sr-only">User name</label>
@@ -32,17 +37,7 @@
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
     <hr>
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign In">Sign in</button>
-
-    <!--
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-    -->
-
 </form>
 </div>
 </body>
-<script src="../static/js/jquery-migrate-3.0.0.min.js"></script>
-<script src="../static/js/bootstrap.bundle.min.js"></script>
-
 </html>
