@@ -2,13 +2,14 @@ package com.example.demo.Models;
 
 public class CustomerModel {
     private int id, orders;
-    private String name, lastname, adress, city, zipcode;
+    private String email, name, lastname, adress, city, zipcode;
 
     public CustomerModel() {
     }
 
-    public CustomerModel(int id, String name, String lastname, String adress, String city, String zipcode, int orders) {
+    public CustomerModel(int id, String email, String name, String lastname, String adress, String city, String zipcode, int orders) {
         this.id = id;
+        this.email = email;
         this.name = name;
         this.lastname = lastname;
         this.adress = adress;
@@ -31,6 +32,14 @@ public class CustomerModel {
 
     public void setOrders(int orders) {
         this.orders = orders;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {

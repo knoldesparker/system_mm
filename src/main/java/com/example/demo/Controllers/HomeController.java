@@ -1,6 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Models.Repositories.CustomerRepository;
+import com.example.demo.Models.Repositories.OrderRepository;
 import com.example.demo.Models.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ public class HomeController {
     private CustomerRepository CR = new CustomerRepository();
     @Autowired
     private ProductRepository PR = new ProductRepository();
+    @Autowired
+    private OrderRepository OR = new OrderRepository();
 
     @GetMapping("/customers")
     public String customersPage(Model model) {
@@ -24,6 +27,11 @@ public class HomeController {
     public String productsPage(Model model) {
         model.addAttribute("products", PR.getProducts());
         return "/products";
+    }
+    @GetMapping("/orders")
+    public String ordersPage(Model model) {
+        model.addAttribute("orders", OR.getOrders());
+        return "/orders";
     }
 
 }
