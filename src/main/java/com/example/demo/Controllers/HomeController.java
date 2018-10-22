@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -32,6 +32,11 @@ public class HomeController {
     public String ordersPage(Model model) {
         model.addAttribute("orders", OR.getOrders());
         return "/orders";
+    }
+    @GetMapping("/orders/details/order/{id}")
+    public String orderDetailpage(@PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("order", OR.getOrderById(id));
+        return "/details/order";
     }
 
 }

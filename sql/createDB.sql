@@ -10,6 +10,7 @@ CREATE TABLE customers(
     customer_adress varchar(50) NOT NULL,
     customer_city varchar(50) NOT NULL,
     customer_zipcode varchar(50) NOT NULL,
+    customer_contry varchar(50) NOT NULL,
     customer_orders int default 0,
     PRIMARY KEY (customer_id, customer_email)
 );
@@ -24,9 +25,10 @@ CREATE TABLE products(
 );
 
 CREATE TABLE orders(
-	order_id INT AUTO_INCREMENT PRIMARY KEY,
+	order_id INT AUTO_INCREMENT,
     customer_id int NOT NULL,
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    primary key (order_id, customer_id),
 	FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
 );
 
@@ -38,6 +40,37 @@ CREATE TABLE product_orders(
     FOREIGN KEY(order_id) REFERENCES orders(order_id),
     FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
+
+create view order_list AS
+select
+	orders.order_id,
+    orders.customer_id,
+    customers.customer_name,
+    date
+from orders
+join customers on orders.customer_id=customers.customer_id;
+
+CREATE VIEW order_details AS
+SELECT
+	orders.order_id,
+    orders.customer_id,
+    orders.date,
+    customers.customer_name,
+    customers.customer_lastname,
+    customers.customer_email,
+    customers.customer_adress,
+    customers.customer_city,
+    customers.customer_zipcode,
+    customers.customer_contry,
+    product_orders.product_id,
+    products.product_name,
+    products.product_category,
+    products.product_price,
+    product_orders.quantity
+FROM orders
+JOIN product_orders ON orders.order_id=product_orders.order_id
+JOIN customers ON orders.customer_id=customers.customer_id
+Join products on product_orders.product_id=products.product_id;
 
 CREATE VIEW product_list_admin AS
 SELECT
@@ -52,17 +85,17 @@ ORDER BY product_category desc;
 
 
 -- Dummy Data to fill up the table
-insert into customers (customer_email, customer_name, customer_lastname, customer_adress, customer_city, customer_zipcode)
-	value 	('1email@email.dk','Casper','Sillemann','Gammel Jernbanevej 28st tv','København','2500'),
-			('2email@email.dk','Freja','Orstrand','Gammel Jernbanevej 28st tv','København','2500'),
-            ('3email@email.dk','Favou','Hebert','Sønderstræde 64','København V','1709'),
-            ('4email@email.dk','Frankie','Rich','Kongshøj Allé 96','Kolding','6000'),
-            ('5email@email.dk','Lorena','Reeves','Søndergade 69','Bredsten','7182'),
-            ('6email@email.dk','Jaydan','Wiley','Mølleløkken 76','Odense C','5090'),
-            ('7email@email.dk','Devin','Bowen','Hans Schacksvej 68','Skive','7800'),
-            ('8email@email.dk','Conah','Beasley','Mikkelenborgvej 48','København K','1370'),
-            ('9email@email.dk','Arnold','Holden','Pilekrogen 18','København K','1453'),
-            ('10email@email.dk','Seth','Walmsley','Gartnervænget 72','Vils','7980');
+insert into customers (customer_email, customer_name, customer_lastname, customer_adress, customer_city, customer_zipcode, customer_contry)
+	value 	('1email@email.dk','Casper','Sillemann','Gammel Jernbanevej 28st tv','København','2500','Danmark'),
+			('2email@email.dk','Freja','Orstrand','Gammel Jernbanevej 28st tv','København','2500','Danmark'),
+            ('3email@email.dk','Favou','Hebert','Sønderstræde 64','København V','1709','Danmark'),
+            ('4email@email.dk','Frankie','Rich','Kongshøj Allé 96','Kolding','6000','Danmark'),
+            ('5email@email.dk','Lorena','Reeves','Søndergade 69','Bredsten','7182','Danmark'),
+            ('6email@email.dk','Jaydan','Wiley','Mølleløkken 76','Odense C','5090','Danmark'),
+            ('7email@email.dk','Devin','Bowen','Hans Schacksvej 68','Skive','7800','Danmark'),
+            ('8email@email.dk','Conah','Beasley','Mikkelenborgvej 48','København K','1370','Danmark'),
+            ('9email@email.dk','Arnold','Holden','Pilekrogen 18','København K','1453','Danmark'),
+            ('10email@email.dk','Seth','Walmsley','Gartnervænget 72','Vils','7980','Danmark');
 
 INSERT INTO products (product_manufacturer, product_name, product_quantity,  product_price, product_category, product_description )
 VALUES

@@ -27,20 +27,20 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
+                        <th>Id</th>
+                        <th>Kunde Id</th>
+                        <th>Kunde Navn</th>
+                        <th>Data</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.orderId}"></td>
+                        <td th:text="${order.customerId}"></td>
+                        <td th:text="${order.customerName}"></td>
+                        <td th:text="${order.date}"></td>
+                        <td><a id="detaljer" th:href="${'orders/details/order/' + order.orderId}" title="detaljer">Detaljer <span  data-feather="chevrons-right"></span></a></td>
                     </tr>
                     </tbody>
                 </table>

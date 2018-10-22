@@ -2,12 +2,12 @@ package com.example.demo.Models;
 
 public class CustomerModel {
     private int id, orders;
-    private String email, name, lastname, adress, city, zipcode;
+    private String email, name, lastname, adress, city, zipcode, contry;
 
     public CustomerModel() {
     }
 
-    public CustomerModel(int id, String email, String name, String lastname, String adress, String city, String zipcode, int orders) {
+    public CustomerModel(int id, String email, String name, String lastname, String adress, String city, String zipcode,String contry, int orders) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -15,6 +15,7 @@ public class CustomerModel {
         this.adress = adress;
         this.city = city;
         this.zipcode = zipcode;
+        this.contry = contry;
         this.orders = orders;
     }
 
@@ -80,5 +81,13 @@ public class CustomerModel {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public String getContry() {
+        return contry;
+    }
+
+    public void setContry(String contry) {
+        this.contry = contry;
     }
 }

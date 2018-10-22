@@ -36,6 +36,7 @@
                         <th>Adresse</th>
                         <th>By</th>
                         <th>ZIP-Kode</th>
+                        <th>Land</th>
                         <th>Bestillinger</th>
                         <th>Knap</th>
                     </tr>
@@ -49,6 +50,7 @@
                         <td th:text="${customer.adress}"></td>
                         <td th:text="${customer.city}"></td>
                         <td th:text="${customer.zipcode}"></td>
+                        <td th:text="${customer.contry}"></td>
                         <td th:text="${customer.orders}"></td>
                         <td><a id="detaljer" th:href="${'/#/' + customer.id}" title="detaljer">Detaljer <span  data-feather="user"></span></a></td>
                     </tr>
