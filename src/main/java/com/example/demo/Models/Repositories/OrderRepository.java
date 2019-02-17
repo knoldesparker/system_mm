@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderRepository {
 
     @Autowired
-    private JdbcTemplate jdbc = new JdbcTemplate();
+    private JdbcTemplate jdbc;
     private String sql;
 
     public List<OrderModel> getOrders() {

@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerRepository {
 
     @Autowired
-    private JdbcTemplate jdbc = new JdbcTemplate();
+    private JdbcTemplate jdbc;
     private String sql;
 
     public List<CustomerModel> getCustomers() {
